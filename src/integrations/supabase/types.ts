@@ -14,6 +14,93 @@ export type Database = {
   }
   public: {
     Tables: {
+      facebook_ads: {
+        Row: {
+          ad_creative_body: string | null
+          ad_creative_image_url: string | null
+          ad_creative_link_title: string | null
+          ad_creative_link_url: string | null
+          ad_library_id: string
+          ad_snapshot_url: string | null
+          ad_type: string
+          advertiser_id: string | null
+          advertiser_name: string
+          category: string | null
+          country: string | null
+          created_at: string | null
+          days_running: number | null
+          end_date: string | null
+          fetched_at: string | null
+          id: string
+          impressions_lower: number | null
+          impressions_upper: number | null
+          page_id: string | null
+          page_name: string | null
+          platform: string
+          spend_lower: number | null
+          spend_upper: number | null
+          start_date: string | null
+          status: string
+          updated_at: string | null
+        }
+        Insert: {
+          ad_creative_body?: string | null
+          ad_creative_image_url?: string | null
+          ad_creative_link_title?: string | null
+          ad_creative_link_url?: string | null
+          ad_library_id: string
+          ad_snapshot_url?: string | null
+          ad_type?: string
+          advertiser_id?: string | null
+          advertiser_name: string
+          category?: string | null
+          country?: string | null
+          created_at?: string | null
+          days_running?: number | null
+          end_date?: string | null
+          fetched_at?: string | null
+          id?: string
+          impressions_lower?: number | null
+          impressions_upper?: number | null
+          page_id?: string | null
+          page_name?: string | null
+          platform?: string
+          spend_lower?: number | null
+          spend_upper?: number | null
+          start_date?: string | null
+          status?: string
+          updated_at?: string | null
+        }
+        Update: {
+          ad_creative_body?: string | null
+          ad_creative_image_url?: string | null
+          ad_creative_link_title?: string | null
+          ad_creative_link_url?: string | null
+          ad_library_id?: string
+          ad_snapshot_url?: string | null
+          ad_type?: string
+          advertiser_id?: string | null
+          advertiser_name?: string
+          category?: string | null
+          country?: string | null
+          created_at?: string | null
+          days_running?: number | null
+          end_date?: string | null
+          fetched_at?: string | null
+          id?: string
+          impressions_lower?: number | null
+          impressions_upper?: number | null
+          page_id?: string | null
+          page_name?: string | null
+          platform?: string
+          spend_lower?: number | null
+          spend_upper?: number | null
+          start_date?: string | null
+          status?: string
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
       profiles: {
         Row: {
           avatar_url: string | null

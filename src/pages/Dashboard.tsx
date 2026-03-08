@@ -1,17 +1,25 @@
 import { useState, useMemo } from "react";
-import { Search, Settings, Calendar, SlidersHorizontal, ChevronLeft, ChevronRight, Facebook } from "lucide-react";
+import { Search, Settings, Calendar, SlidersHorizontal, ChevronLeft, ChevronRight, Facebook, RefreshCw, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/AppSidebar";
-import { mockAds } from "@/lib/mock-data";
+import { mockAds, Ad } from "@/lib/mock-data";
 import { Slider } from "@/components/ui/slider";
 import AdCard from "@/components/AdCard";
+import { useFacebookAds, useTriggerFetch, FacebookAd } from "@/hooks/useFacebookAds";
+import { useToast } from "@/hooks/use-toast";
+import { useQueryClient } from "@tanstack/react-query";
 
 const ITEMS_PER_PAGE = 8;
 
 const Dashboard = () => {
+  const { toast } = useToast();
+  const queryClient = useQueryClient();
+  const { data: facebookAds, isLoading: loadingAds } = useFacebookAds();
+  const { triggerFetch } = useTriggerFetch();
+  const [fetching, setFetching] = useState(false);
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState("all");
   const [funnelFilter, setFunnelFilter] = useState("all");
@@ -20,12 +28,67 @@ const Dashboard = () => {
   const [dateFrom, setDateFrom] = useState("");
   const [dateTo, setDateTo] = useState("");
   const [minDays, setMinDays] = useState(0);
-  const [maxDays, setMaxDays] = useState(100);
+  const [maxDays, setMaxDays] = useState(365);
   const [minAds, setMinAds] = useState(0);
-  const [maxAds, setMaxAds] = useState(100);
+  const [maxAds, setMaxAds] = useState(200);
+  const [dataSource, setDataSource] = useState<"all" | "facebook" | "mock">("all");
+
+  // Convert Facebook ads to Ad format for the existing AdCard
+  const convertedFbAds: Ad[] = useMemo(() => {
+    if (!facebookAds) return [];
+    return facebookAds.map((fb): Ad => ({
+      id: fb.id,
+      name: fb.ad_creative_link_title || fb.ad_creative_body?.slice(0, 60) || "Anúncio Facebook",
+      status: fb.status as Ad["status"],
+      funnelStage: "fundo",
+      salesPageUrl: fb.ad_creative_link_url || fb.ad_snapshot_url || "#",
+      spend: (fb.spend_lower + fb.spend_upper) / 2,
+      impressions: (fb.impressions_lower + fb.impressions_upper) / 2,
+      clicks: Math.round(((fb.impressions_lower + fb.impressions_upper) / 2) * 0.03),
+      conversions: Math.round(((fb.impressions_lower + fb.impressions_upper) / 2) * 0.01),
+      ctr: 3.0,
+      cpc: fb.spend_upper > 0 ? fb.spend_upper / Math.max(1, ((fb.impressions_upper) * 0.03)) : 0,
+      startDate: fb.start_date || "",
+      endDate: fb.end_date || null,
+      creative: fb.ad_creative_body?.slice(0, 40) || "Criativo Facebook",
+      campaign: fb.category || "Facebook Ad Library",
+      advertiser: fb.advertiser_name,
+      platform: fb.platform as Ad["platform"],
+      adType: fb.ad_type as Ad["adType"],
+      activeAdsCount: fb.days_running > 30 ? Math.round(fb.days_running * 1.5) : fb.days_running,
+      daysRunning: fb.days_running,
+      thumbnailUrl: fb.ad_creative_image_url || fb.ad_snapshot_url || "https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=400&h=500&fit=crop",
+    }));
+  }, [facebookAds]);
+
+  // Combine data sources
+  const allAds = useMemo(() => {
+    if (dataSource === "facebook") return convertedFbAds;
+    if (dataSource === "mock") return mockAds;
+    return [...convertedFbAds, ...mockAds];
+  }, [convertedFbAds, dataSource]);
+
+  const handleFetchAds = async () => {
+    setFetching(true);
+    try {
+      const result = await triggerFetch(search || undefined);
+      toast({
+        title: "Busca concluída!",
+        description: `${result.fetched} anúncios encontrados e ${result.upserted} salvos.`,
+      });
+      queryClient.invalidateQueries({ queryKey: ["facebook-ads"] });
+    } catch (err: any) {
+      toast({
+        title: "Erro na busca",
+        description: err.message || "Não foi possível buscar anúncios.",
+        variant: "destructive",
+      });
+    }
+    setFetching(false);
+  };
 
   const filteredAds = useMemo(() => {
-    return mockAds.filter((ad) => {
+    return allAds.filter((ad) => {
       const matchSearch = ad.name.toLowerCase().includes(search.toLowerCase()) ||
         ad.campaign.toLowerCase().includes(search.toLowerCase()) ||
         ad.advertiser.toLowerCase().includes(search.toLowerCase());
@@ -39,17 +102,7 @@ const Dashboard = () => {
       const matchAdsCount = ad.activeAdsCount >= minAds && ad.activeAdsCount <= maxAds;
       return matchSearch && matchStatus && matchFunnel && matchPlatform && matchAdType && matchDateFrom && matchDateTo && matchDays && matchAdsCount;
     });
-  }, [search, statusFilter, funnelFilter, platformFilter, adTypeFilter, dateFrom, dateTo, minDays, maxDays, minAds, maxAds]);
-
-  const [currentPage, setCurrentPage] = useState(1);
-  const totalPages = Math.ceil(filteredAds.length / ITEMS_PER_PAGE);
-  const paginatedAds = useMemo(() => {
-    const start = (currentPage - 1) * ITEMS_PER_PAGE;
-    return filteredAds.slice(start, start + ITEMS_PER_PAGE);
-  }, [filteredAds, currentPage]);
-
-  // Reset page when filters change
-  useMemo(() => { setCurrentPage(1); }, [filteredAds.length]);
+  }, [allAds, search, statusFilter, funnelFilter, platformFilter, adTypeFilter, dateFrom, dateTo, minDays, maxDays, minAds, maxAds]);
 
   const resetFilters = () => {
     setSearch("");
@@ -60,10 +113,20 @@ const Dashboard = () => {
     setDateFrom("");
     setDateTo("");
     setMinDays(0);
-    setMaxDays(100);
+    setMaxDays(365);
     setMinAds(0);
-    setMaxAds(100);
+    setMaxAds(200);
   };
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const totalPages = Math.ceil(filteredAds.length / ITEMS_PER_PAGE);
+  const paginatedAds = useMemo(() => {
+    const start = (currentPage - 1) * ITEMS_PER_PAGE;
+    return filteredAds.slice(start, start + ITEMS_PER_PAGE);
+  }, [filteredAds, currentPage]);
+
+  // Reset page when filters change
+  useMemo(() => { setCurrentPage(1); }, [filteredAds.length]);
 
   return (
     <SidebarProvider>
@@ -83,10 +146,30 @@ const Dashboard = () => {
                   className="pl-9 bg-secondary border-border"
                 />
               </div>
-            </div>
-            <Button variant="outline" size="sm" className="gap-2 border-border text-muted-foreground">
-              <Settings className="w-4 h-4" /> Configurações
-            </Button>
+              </div>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={handleFetchAds}
+                disabled={fetching}
+                className="gap-2 border-border text-muted-foreground"
+              >
+                {fetching ? <Loader2 className="w-4 h-4 animate-spin" /> : <RefreshCw className="w-4 h-4" />}
+                {fetching ? "Buscando..." : "Buscar Anúncios"}
+              </Button>
+              <Select value={dataSource} onValueChange={(v: "all" | "facebook" | "mock") => setDataSource(v)}>
+                <SelectTrigger className="w-36 bg-secondary border-border text-xs h-8">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">Todos</SelectItem>
+                  <SelectItem value="facebook">Facebook API</SelectItem>
+                  <SelectItem value="mock">Dados Demo</SelectItem>
+                </SelectContent>
+              </Select>
+              <Button variant="outline" size="sm" className="gap-2 border-border text-muted-foreground">
+                <Settings className="w-4 h-4" /> Configurações
+              </Button>
           </header>
 
           <div className="flex flex-1 overflow-hidden">
