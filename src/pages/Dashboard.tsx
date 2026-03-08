@@ -122,6 +122,10 @@ const Dashboard = () => {
     setMaxDays(365);
     setMinAds(0);
     setMaxAds(200);
+    setMinImpressions(0);
+    setMaxImpressions(10000000);
+    setMinSpend(0);
+    setMaxSpend(100000);
   };
 
   const [currentPage, setCurrentPage] = useState(1);
