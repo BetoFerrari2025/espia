@@ -104,9 +104,11 @@ const Dashboard = () => {
       const matchDateTo = !dateTo || ad.startDate <= dateTo;
       const matchDays = ad.daysRunning >= minDays && ad.daysRunning <= maxDays;
       const matchAdsCount = ad.activeAdsCount >= minAds && ad.activeAdsCount <= maxAds;
-      return matchSearch && matchStatus && matchFunnel && matchPlatform && matchAdType && matchDateFrom && matchDateTo && matchDays && matchAdsCount;
+      const matchImpressions = ad.impressions >= minImpressions && ad.impressions <= maxImpressions;
+      const matchSpend = ad.spend >= minSpend && ad.spend <= maxSpend;
+      return matchSearch && matchStatus && matchFunnel && matchPlatform && matchAdType && matchDateFrom && matchDateTo && matchDays && matchAdsCount && matchImpressions && matchSpend;
     });
-  }, [allAds, search, statusFilter, funnelFilter, platformFilter, adTypeFilter, dateFrom, dateTo, minDays, maxDays, minAds, maxAds]);
+  }, [allAds, search, statusFilter, funnelFilter, platformFilter, adTypeFilter, dateFrom, dateTo, minDays, maxDays, minAds, maxAds, minImpressions, maxImpressions, minSpend, maxSpend]);
 
   const resetFilters = () => {
     setSearch("");
