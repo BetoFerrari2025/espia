@@ -2,7 +2,8 @@ import { ExternalLink, Play, Image, Layers, Eye, DollarSign, MousePointerClick, 
 import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Ad, statusLabels } from "@/lib/mock-data";
-import { useState } from "react";
+import { useState, useMemo } from "react";
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from "recharts";
 
 const statusColor: Record<string, string> = {
   active: "bg-success/15 text-success border-success/20",
