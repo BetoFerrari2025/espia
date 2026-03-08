@@ -11,6 +11,9 @@ import LoginPage from "./pages/LoginPage";
 import Dashboard from "./pages/Dashboard";
 import ProfilePage from "./pages/ProfilePage";
 import AdDetailPage from "./pages/AdDetailPage";
+import TermsPage from "./pages/TermsPage";
+import DataDeletionPage from "./pages/DataDeletionPage";
+import PrivacyPage from "./pages/PrivacyPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -41,6 +44,9 @@ const App = () => (
                   <AdDetailPage />
                 </ProtectedRoute>
               } />
+              <Route path="/termos" element={<TermsPage />} />
+              <Route path="/exclusao-dados" element={<DataDeletionPage />} />
+              <Route path="/privacidade" element={<PrivacyPage />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </AuthProvider>
