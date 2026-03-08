@@ -3,6 +3,7 @@ import {
   LayoutDashboard, Target, Link2, BarChart3, Settings, LogOut, Zap, Sun, Moon,
 } from "lucide-react";
 import { useTheme } from "@/contexts/ThemeContext";
+import { useAuth } from "@/contexts/AuthContext";
 import {
   Sidebar, SidebarContent, SidebarGroup, SidebarGroupContent, SidebarGroupLabel,
   SidebarMenu, SidebarMenuButton, SidebarMenuItem, useSidebar,
