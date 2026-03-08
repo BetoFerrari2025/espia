@@ -36,6 +36,11 @@ const App = () => (
                   <ProfilePage />
                 </ProtectedRoute>
               } />
+              <Route path="/ad/:id" element={
+                <ProtectedRoute>
+                  <AdDetailPage />
+                </ProtectedRoute>
+              } />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </AuthProvider>
