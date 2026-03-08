@@ -24,76 +24,148 @@ export type Ad = {
 
 export const mockAds: Ad[] = [
   {
-    id: "1", name: "Oferta Black Friday - VSL", status: "active", funnelStage: "fundo",
-    salesPageUrl: "https://exemplo.com/oferta-black", spend: 4520.50, impressions: 125000,
-    clicks: 3750, conversions: 187, ctr: 3.0, cpc: 1.21, startDate: "2026-01-15",
-    endDate: null, creative: "Video VSL 15min", campaign: "BF2026 - Conversão",
-    advertiser: "Autor de Livros JJ Rozza", platform: "facebook", adType: "video",
-    activeAdsCount: 42, daysRunning: 52,
-    thumbnailUrl: "https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=400&h=500&fit=crop"
+    id: "1", name: "VSL - Método Milionário 2.0", status: "active", funnelStage: "fundo",
+    salesPageUrl: "https://metodo-milionario.com/oferta", spend: 12450.00, impressions: 385000,
+    clicks: 11550, conversions: 578, ctr: 3.0, cpc: 1.08, startDate: "2026-01-10",
+    endDate: null, creative: "VSL 18min - Depoimentos", campaign: "Conversão - Método MM",
+    advertiser: "Pablo Marçal", platform: "facebook", adType: "video",
+    activeAdsCount: 87, daysRunning: 57,
+    thumbnailUrl: "https://images.unsplash.com/photo-1553877522-43269d4ea984?w=400&h=500&fit=crop"
   },
   {
-    id: "2", name: "Remarketing - Carrinho Abandonado", status: "active", funnelStage: "fundo",
-    salesPageUrl: "https://exemplo.com/checkout-remarketing", spend: 1890.30, impressions: 45000,
-    clicks: 2250, conversions: 112, ctr: 5.0, cpc: 0.84, startDate: "2026-02-01",
-    endDate: null, creative: "Carrossel Depoimentos", campaign: "Remarketing Q1",
-    advertiser: "Emily Kent", platform: "instagram", adType: "carrossel",
-    activeAdsCount: 40, daysRunning: 35,
+    id: "2", name: "Carrossel - 5 Erros no Tráfego Pago", status: "active", funnelStage: "topo",
+    salesPageUrl: "https://trafegopago.expert/erros", spend: 3200.00, impressions: 520000,
+    clicks: 15600, conversions: 1560, ctr: 3.0, cpc: 0.21, startDate: "2026-02-01",
+    endDate: null, creative: "Carrossel 5 slides educativo", campaign: "Captação - Tráfego Expert",
+    advertiser: "Tiago Tessmann", platform: "facebook", adType: "carrossel",
+    activeAdsCount: 63, daysRunning: 35,
+    thumbnailUrl: "https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=400&h=500&fit=crop"
+  },
+  {
+    id: "3", name: "Criativo Estático - Emagreça em 21 Dias", status: "active", funnelStage: "fundo",
+    salesPageUrl: "https://corpo21dias.com/oferta", spend: 8900.00, impressions: 290000,
+    clicks: 8700, conversions: 435, ctr: 3.0, cpc: 1.02, startDate: "2026-01-05",
+    endDate: null, creative: "Antes e Depois + CTA", campaign: "Vendas - Corpo 21",
+    advertiser: "Dra. Fernanda Lima", platform: "facebook", adType: "imagem",
+    activeAdsCount: 112, daysRunning: 62,
+    thumbnailUrl: "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=400&h=500&fit=crop"
+  },
+  {
+    id: "4", name: "Reels - Renda Extra com Dropshipping", status: "active", funnelStage: "meio",
+    salesPageUrl: "https://dropmaster.com.br/aula", spend: 5670.00, impressions: 670000,
+    clicks: 20100, conversions: 2010, ctr: 3.0, cpc: 0.28, startDate: "2026-01-20",
+    endDate: null, creative: "UGC Storytelling 45s", campaign: "Webinar Drop",
+    advertiser: "Caio Ferreira", platform: "instagram", adType: "video",
+    activeAdsCount: 95, daysRunning: 47,
     thumbnailUrl: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&h=500&fit=crop"
   },
   {
-    id: "3", name: "Lead Magnet - Ebook Gratuito", status: "active", funnelStage: "topo",
-    salesPageUrl: "https://exemplo.com/ebook-gratis", spend: 2340.00, impressions: 230000,
-    clicks: 9200, conversions: 920, ctr: 4.0, cpc: 0.25, startDate: "2026-01-01",
-    endDate: null, creative: "Imagem + Copy Direta", campaign: "Captação Leads",
-    advertiser: "Ana Ruiz", platform: "facebook", adType: "imagem",
-    activeAdsCount: 60, daysRunning: 67,
-    thumbnailUrl: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=400&h=500&fit=crop"
+    id: "5", name: "VSL - Curso de Inglês Fluente", status: "paused", funnelStage: "fundo",
+    salesPageUrl: "https://inglesfluente.com/matricula", spend: 15200.00, impressions: 410000,
+    clicks: 12300, conversions: 615, ctr: 3.0, cpc: 1.24, startDate: "2025-12-15",
+    endDate: "2026-02-28", creative: "VSL Professor Nativo", campaign: "Matrícula Inglês Q1",
+    advertiser: "Mairo Vergara", platform: "facebook", adType: "video",
+    activeAdsCount: 74, daysRunning: 75,
+    thumbnailUrl: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=400&h=500&fit=crop"
   },
   {
-    id: "4", name: "Webinar - Aula Ao Vivo", status: "paused", funnelStage: "meio",
-    salesPageUrl: "https://exemplo.com/webinar-aovivo", spend: 3100.00, impressions: 89000,
-    clicks: 4450, conversions: 445, ctr: 5.0, cpc: 0.70, startDate: "2026-01-20",
-    endDate: "2026-02-28", creative: "Video Convite 60s", campaign: "Webinar Março",
-    advertiser: "Belo Valcido", platform: "facebook", adType: "video",
-    activeAdsCount: 53, daysRunning: 47,
-    thumbnailUrl: "https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?w=400&h=500&fit=crop"
+    id: "6", name: "Story - Lançamento Mentoria Premium", status: "active", funnelStage: "meio",
+    salesPageUrl: "https://mentoriapremium.io/lista-espera", spend: 2100.00, impressions: 180000,
+    clicks: 5400, conversions: 540, ctr: 3.0, cpc: 0.39, startDate: "2026-02-20",
+    endDate: null, creative: "Stories Countdown + Urgência", campaign: "Lançamento Mentoria",
+    advertiser: "Ícaro de Carvalho", platform: "instagram", adType: "video",
+    activeAdsCount: 48, daysRunning: 16,
+    thumbnailUrl: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&h=500&fit=crop"
   },
   {
-    id: "5", name: "Teste A/B - Nova Copy", status: "active", funnelStage: "meio",
-    salesPageUrl: "https://exemplo.com/teste-ab-v2", spend: 890.00, impressions: 34000,
-    clicks: 1020, conversions: 51, ctr: 3.0, cpc: 0.87, startDate: "2026-03-01",
-    endDate: null, creative: "Imagem Minimalista", campaign: "Teste Criativos",
-    advertiser: "Dicas de Laune", platform: "instagram", adType: "imagem",
-    activeAdsCount: 35, daysRunning: 7,
-    thumbnailUrl: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=500&fit=crop"
+    id: "7", name: "Carrossel - Skincare Coreano", status: "active", funnelStage: "topo",
+    salesPageUrl: "https://kbeauty.store/colecao", spend: 4300.00, impressions: 890000,
+    clicks: 26700, conversions: 1335, ctr: 3.0, cpc: 0.16, startDate: "2026-01-25",
+    endDate: null, creative: "Carrossel Produto + Review", campaign: "Awareness K-Beauty",
+    advertiser: "Boca Rosa", platform: "facebook", adType: "carrossel",
+    activeAdsCount: 56, daysRunning: 42,
+    thumbnailUrl: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=400&h=500&fit=crop"
   },
   {
-    id: "6", name: "Lookalike - Compradores", status: "ended", funnelStage: "topo",
-    salesPageUrl: "https://exemplo.com/lp-lookalike", spend: 5600.00, impressions: 450000,
-    clicks: 13500, conversions: 675, ctr: 3.0, cpc: 0.41, startDate: "2025-11-01",
-    endDate: "2025-12-31", creative: "Video UGC 30s", campaign: "Escala Q4 2025",
-    advertiser: "Marco Silva", platform: "tiktok", adType: "video",
-    activeAdsCount: 28, daysRunning: 61,
-    thumbnailUrl: "https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?w=400&h=500&fit=crop"
+    id: "8", name: "Video UGC - Suplemento Whey Isolado", status: "active", funnelStage: "fundo",
+    salesPageUrl: "https://nutrishop.com/whey-promo", spend: 6800.00, impressions: 320000,
+    clicks: 9600, conversions: 960, ctr: 3.0, cpc: 0.71, startDate: "2026-02-05",
+    endDate: null, creative: "UGC Review + Unboxing", campaign: "Vendas Whey Fev",
+    advertiser: "Growth Supplements", platform: "facebook", adType: "video",
+    activeAdsCount: 41, daysRunning: 31,
+    thumbnailUrl: "https://images.unsplash.com/photo-1593095948071-474c5cc2989d?w=400&h=500&fit=crop"
   },
   {
-    id: "7", name: "Retargeting - Visualizadores VSL", status: "active", funnelStage: "fundo",
-    salesPageUrl: "https://exemplo.com/oferta-retarget", spend: 1560.00, impressions: 28000,
-    clicks: 1400, conversions: 98, ctr: 5.0, cpc: 1.11, startDate: "2026-02-15",
-    endDate: null, creative: "Stories Urgência", campaign: "Retarget VSL",
-    advertiser: "Pedro Almeida", platform: "instagram", adType: "video",
-    activeAdsCount: 45, daysRunning: 21,
-    thumbnailUrl: "https://images.unsplash.com/photo-1553729459-uj1ef3a6cze?w=400&h=500&fit=crop"
+    id: "9", name: "Imagem - Consultoria Financeira Grátis", status: "ended", funnelStage: "topo",
+    salesPageUrl: "https://finplan.com.br/consultoria", spend: 1950.00, impressions: 410000,
+    clicks: 12300, conversions: 1230, ctr: 3.0, cpc: 0.16, startDate: "2025-11-10",
+    endDate: "2026-01-10", creative: "Imagem Calculadora + Gancho", campaign: "Lead Gen Finanças",
+    advertiser: "Primo Rico", platform: "facebook", adType: "imagem",
+    activeAdsCount: 33, daysRunning: 61,
+    thumbnailUrl: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=400&h=500&fit=crop"
   },
   {
-    id: "8", name: "Awareness - Marca Pessoal", status: "active", funnelStage: "topo",
-    salesPageUrl: "https://exemplo.com/quem-somos", spend: 780.00, impressions: 180000,
-    clicks: 5400, conversions: 0, ctr: 3.0, cpc: 0.14, startDate: "2026-03-01",
-    endDate: null, creative: "Reels Educativo", campaign: "Branding 2026",
-    advertiser: "Julia Mendes", platform: "tiktok", adType: "video",
-    activeAdsCount: 22, daysRunning: 7,
-    thumbnailUrl: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=400&h=500&fit=crop"
+    id: "10", name: "VSL - Método de Vendas no Instagram", status: "active", funnelStage: "fundo",
+    salesPageUrl: "https://instasales.pro/oferta", spend: 9400.00, impressions: 275000,
+    clicks: 8250, conversions: 413, ctr: 3.0, cpc: 1.14, startDate: "2026-01-18",
+    endDate: null, creative: "VSL Resultados Alunos 12min", campaign: "Conversão Insta Sales",
+    advertiser: "Leandro Ladeira", platform: "facebook", adType: "video",
+    activeAdsCount: 68, daysRunning: 49,
+    thumbnailUrl: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=400&h=500&fit=crop"
+  },
+  {
+    id: "11", name: "Carrossel - Móveis Planejados 50% OFF", status: "active", funnelStage: "meio",
+    salesPageUrl: "https://moveisplanejados.com/promo", spend: 3750.00, impressions: 195000,
+    clicks: 5850, conversions: 293, ctr: 3.0, cpc: 0.64, startDate: "2026-02-10",
+    endDate: null, creative: "Carrossel Ambientes Decorados", campaign: "Promo Março Móveis",
+    advertiser: "MadeiraMadeira", platform: "facebook", adType: "carrossel",
+    activeAdsCount: 29, daysRunning: 26,
+    thumbnailUrl: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=400&h=500&fit=crop"
+  },
+  {
+    id: "12", name: "Video Depoimento - Clareamento Dental", status: "paused", funnelStage: "fundo",
+    salesPageUrl: "https://sorrisoperfeito.com/agendar", spend: 2800.00, impressions: 98000,
+    clicks: 2940, conversions: 147, ctr: 3.0, cpc: 0.95, startDate: "2026-01-08",
+    endDate: "2026-03-01", creative: "Antes/Depois Pacientes", campaign: "Agendamento Dental",
+    advertiser: "Clínica OdontoStar", platform: "instagram", adType: "video",
+    activeAdsCount: 19, daysRunning: 52,
+    thumbnailUrl: "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=400&h=500&fit=crop"
+  },
+  {
+    id: "13", name: "Imagem - Tênis Nike Air Max 40% OFF", status: "active", funnelStage: "fundo",
+    salesPageUrl: "https://sneakerstore.com.br/airmax", spend: 7200.00, impressions: 540000,
+    clicks: 16200, conversions: 1620, ctr: 3.0, cpc: 0.44, startDate: "2026-02-14",
+    endDate: null, creative: "Produto + Fundo Gradiente", campaign: "Promo Sneakers Fev",
+    advertiser: "Netshoes", platform: "facebook", adType: "imagem",
+    activeAdsCount: 82, daysRunning: 22,
+    thumbnailUrl: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400&h=500&fit=crop"
+  },
+  {
+    id: "14", name: "TikTok - Receita Fit em 5 Minutos", status: "active", funnelStage: "topo",
+    salesPageUrl: "https://receitasfit.app/download", spend: 1200.00, impressions: 1200000,
+    clicks: 36000, conversions: 3600, ctr: 3.0, cpc: 0.03, startDate: "2026-03-01",
+    endDate: null, creative: "Trend Recipe POV", campaign: "App Download Receitas",
+    advertiser: "Cozinha Fitness", platform: "tiktok", adType: "video",
+    activeAdsCount: 44, daysRunning: 7,
+    thumbnailUrl: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=400&h=500&fit=crop"
+  },
+  {
+    id: "15", name: "Story - Curso de Confeitaria Artesanal", status: "active", funnelStage: "meio",
+    salesPageUrl: "https://confeitariaartesanal.com/inscreva", spend: 1850.00, impressions: 145000,
+    clicks: 4350, conversions: 435, ctr: 3.0, cpc: 0.43, startDate: "2026-02-18",
+    endDate: null, creative: "Timelapse Bolo + CTA", campaign: "Lançamento Confeitaria",
+    advertiser: "Dani Noce", platform: "instagram", adType: "video",
+    activeAdsCount: 37, daysRunning: 18,
+    thumbnailUrl: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400&h=500&fit=crop"
+  },
+  {
+    id: "16", name: "VSL - Robô de Pix Automático", status: "active", funnelStage: "fundo",
+    salesPageUrl: "https://pixrobo.digital/acesso", spend: 18500.00, impressions: 620000,
+    clicks: 18600, conversions: 930, ctr: 3.0, cpc: 0.99, startDate: "2025-12-20",
+    endDate: null, creative: "VSL Prova Social 20min", campaign: "Escala Pix Robô",
+    advertiser: "Alex Vargas", platform: "facebook", adType: "video",
+    activeAdsCount: 134, daysRunning: 78,
+    thumbnailUrl: "https://images.unsplash.com/photo-1563986768609-322da13575f2?w=400&h=500&fit=crop"
   },
 ];
 
