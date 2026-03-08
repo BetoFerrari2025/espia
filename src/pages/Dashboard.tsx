@@ -1,13 +1,13 @@
 import { useState, useMemo } from "react";
-import { ExternalLink, Search, Settings, Play, Image, Layers, Calendar, SlidersHorizontal, Eye, ChevronDown } from "lucide-react";
+import { Search, Settings, Calendar, SlidersHorizontal, ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Badge } from "@/components/ui/badge";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/AppSidebar";
-import { mockAds, funnelStageLabels, statusLabels } from "@/lib/mock-data";
+import { mockAds } from "@/lib/mock-data";
 import { Slider } from "@/components/ui/slider";
+import AdCard from "@/components/AdCard";
 
 const statusColor: Record<string, string> = {
   active: "bg-success/15 text-success border-success/20",
