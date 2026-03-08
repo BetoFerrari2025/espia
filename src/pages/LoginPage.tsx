@@ -4,18 +4,52 @@ import { Eye, EyeOff, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { supabase } from "@/integrations/supabase/client";
+import { useToast } from "@/hooks/use-toast";
 
 const LoginPage = () => {
   const navigate = useNavigate();
+  const { toast } = useToast();
   const [isLogin, setIsLogin] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [displayName, setDisplayName] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    localStorage.setItem("isAuthenticated", "true");
-    navigate("/dashboard");
+    setLoading(true);
+
+    try {
+      if (isLogin) {
+        const { error } = await supabase.auth.signInWithPassword({ email, password });
+        if (error) throw error;
+        navigate("/dashboard");
+      } else {
+        const { error } = await supabase.auth.signUp({
+          email,
+          password,
+          options: {
+            data: { display_name: displayName },
+            emailRedirectTo: window.location.origin,
+          },
+        });
+        if (error) throw error;
+        toast({
+          title: "Cadastro realizado!",
+          description: "Verifique seu e-mail para confirmar a conta.",
+        });
+      }
+    } catch (error: any) {
+      toast({
+        title: "Erro",
+        description: error.message,
+        variant: "destructive",
+      });
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -41,7 +75,13 @@ const LoginPage = () => {
             {!isLogin && (
               <div className="space-y-2">
                 <Label htmlFor="name">Nome completo</Label>
-                <Input id="name" placeholder="Seu nome" className="bg-secondary border-border" />
+                <Input
+                  id="name"
+                  placeholder="Seu nome"
+                  value={displayName}
+                  onChange={(e) => setDisplayName(e.target.value)}
+                  className="bg-secondary border-border"
+                />
               </div>
             )}
             <div className="space-y-2">
@@ -49,7 +89,7 @@ const LoginPage = () => {
               <Input
                 id="email" type="email" placeholder="seu@email.com"
                 value={email} onChange={(e) => setEmail(e.target.value)}
-                className="bg-secondary border-border"
+                className="bg-secondary border-border" required
               />
             </div>
             <div className="space-y-2">
@@ -58,7 +98,7 @@ const LoginPage = () => {
                 <Input
                   id="password" type={showPassword ? "text" : "password"} placeholder="••••••••"
                   value={password} onChange={(e) => setPassword(e.target.value)}
-                  className="bg-secondary border-border pr-10"
+                  className="bg-secondary border-border pr-10" required minLength={6}
                 />
                 <button
                   type="button"
@@ -69,8 +109,12 @@ const LoginPage = () => {
                 </button>
               </div>
             </div>
-            <Button type="submit" className="w-full gradient-gold text-primary-foreground font-semibold h-11 hover:opacity-90 transition-opacity">
-              {isLogin ? "Entrar" : "Cadastrar"}
+            <Button
+              type="submit"
+              disabled={loading}
+              className="w-full gradient-gold text-primary-foreground font-semibold h-11 hover:opacity-90 transition-opacity"
+            >
+              {loading ? "Carregando..." : isLogin ? "Entrar" : "Cadastrar"}
             </Button>
           </form>
 
