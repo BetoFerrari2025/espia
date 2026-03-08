@@ -146,10 +146,30 @@ const Dashboard = () => {
                   className="pl-9 bg-secondary border-border"
                 />
               </div>
-            </div>
-            <Button variant="outline" size="sm" className="gap-2 border-border text-muted-foreground">
-              <Settings className="w-4 h-4" /> Configurações
-            </Button>
+              </div>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={handleFetchAds}
+                disabled={fetching}
+                className="gap-2 border-border text-muted-foreground"
+              >
+                {fetching ? <Loader2 className="w-4 h-4 animate-spin" /> : <RefreshCw className="w-4 h-4" />}
+                {fetching ? "Buscando..." : "Buscar Anúncios"}
+              </Button>
+              <Select value={dataSource} onValueChange={(v: "all" | "facebook" | "mock") => setDataSource(v)}>
+                <SelectTrigger className="w-36 bg-secondary border-border text-xs h-8">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">Todos</SelectItem>
+                  <SelectItem value="facebook">Facebook API</SelectItem>
+                  <SelectItem value="mock">Dados Demo</SelectItem>
+                </SelectContent>
+              </Select>
+              <Button variant="outline" size="sm" className="gap-2 border-border text-muted-foreground">
+                <Settings className="w-4 h-4" /> Configurações
+              </Button>
           </header>
 
           <div className="flex flex-1 overflow-hidden">
