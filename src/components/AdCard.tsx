@@ -46,6 +46,7 @@ const formatNumber = (value: number) => value.toLocaleString("pt-BR");
 const AdCard = ({ ad, index }: AdCardProps) => {
   const TypeIcon = adTypeIcon[ad.adType] || Image;
   const [open, setOpen] = useState(false);
+  const chartData = useMemo(() => generateChartData(ad), [ad]);
 
   return (
     <>
