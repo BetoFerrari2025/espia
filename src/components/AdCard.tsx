@@ -173,6 +173,34 @@ const AdCard = ({ ad, index }: AdCardProps) => {
                 <MetricCard icon={DollarSign} label="CPC" value={formatCurrency(ad.cpc)} />
               </div>
 
+              {/* Performance Chart */}
+              <div className="pt-2 border-t border-border space-y-2">
+                <p className="text-xs font-medium text-muted-foreground flex items-center gap-1.5">
+                  <BarChart3 className="w-3.5 h-3.5" /> Performance (últimos {chartData.length} dias)
+                </p>
+                <div className="h-48 w-full">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <LineChart data={chartData} margin={{ top: 5, right: 5, left: -20, bottom: 5 }}>
+                      <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
+                      <XAxis dataKey="day" tick={{ fontSize: 10, fill: "hsl(var(--muted-foreground))" }} interval="preserveStartEnd" />
+                      <YAxis tick={{ fontSize: 10, fill: "hsl(var(--muted-foreground))" }} />
+                      <Tooltip
+                        contentStyle={{
+                          backgroundColor: "hsl(var(--card))",
+                          border: "1px solid hsl(var(--border))",
+                          borderRadius: "8px",
+                          fontSize: "12px",
+                        }}
+                      />
+                      <Legend wrapperStyle={{ fontSize: "11px" }} />
+                      <Line type="monotone" dataKey="impressões" stroke="hsl(var(--primary))" strokeWidth={2} dot={false} />
+                      <Line type="monotone" dataKey="cliques" stroke="hsl(var(--chart-2))" strokeWidth={2} dot={false} />
+                      <Line type="monotone" dataKey="conversões" stroke="hsl(var(--success))" strokeWidth={2} dot={false} />
+                    </LineChart>
+                  </ResponsiveContainer>
+                </div>
+              </div>
+
               {/* Dates & extra */}
               <div className="space-y-2 pt-2 border-t border-border">
                 <div className="flex items-center gap-2 text-xs text-muted-foreground">
