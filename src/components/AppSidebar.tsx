@@ -1,6 +1,6 @@
 import { useNavigate, useLocation } from "react-router-dom";
 import {
-  LayoutDashboard, Target, Link2, BarChart3, Settings, LogOut, Zap, Sun, Moon,
+  LayoutDashboard, Target, Link2, BarChart3, Settings, LogOut, Zap, Sun, Moon, UserCircle,
 } from "lucide-react";
 import { useTheme } from "@/contexts/ThemeContext";
 import { useAuth } from "@/contexts/AuthContext";
@@ -17,6 +17,7 @@ const menuItems = [
   { title: "URLs de Vendas", url: "/dashboard", icon: Link2 },
   { title: "Métricas", url: "/dashboard", icon: BarChart3 },
   { title: "Configurações", url: "/dashboard", icon: Settings },
+  { title: "Meu Perfil", url: "/profile", icon: UserCircle },
 ];
 
 export function AppSidebar() {
