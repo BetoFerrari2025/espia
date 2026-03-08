@@ -17,6 +17,7 @@ const menuItems = [
   { title: "URLs de Vendas", url: "/dashboard", icon: Link2 },
   { title: "Métricas", url: "/dashboard", icon: BarChart3 },
   { title: "Configurações", url: "/dashboard", icon: Settings },
+  { title: "Meu Perfil", url: "/profile", icon: UserCircle },
 ];
 
 export function AppSidebar() {
