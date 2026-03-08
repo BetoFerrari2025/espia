@@ -9,17 +9,7 @@ import { mockAds } from "@/lib/mock-data";
 import { Slider } from "@/components/ui/slider";
 import AdCard from "@/components/AdCard";
 
-const statusColor: Record<string, string> = {
-  active: "bg-success/15 text-success border-success/20",
-  paused: "bg-warning/15 text-warning border-warning/20",
-  ended: "bg-muted text-muted-foreground border-border",
-};
-
-const adTypeIcon: Record<string, typeof Play> = {
-  video: Play,
-  imagem: Image,
-  carrossel: Layers,
-};
+const ITEMS_PER_PAGE = 8;
 
 const Dashboard = () => {
   const [search, setSearch] = useState("");
