@@ -1,6 +1,6 @@
 import { useNavigate, useLocation } from "react-router-dom";
 import {
-  LayoutDashboard, Target, Link2, BarChart3, Settings, LogOut, Zap, Sun, Moon,
+  LayoutDashboard, Target, Link2, BarChart3, Settings, LogOut, Zap, Sun, Moon, UserCircle,
 } from "lucide-react";
 import { useTheme } from "@/contexts/ThemeContext";
 import { useAuth } from "@/contexts/AuthContext";
