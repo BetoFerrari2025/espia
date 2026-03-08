@@ -4,6 +4,7 @@ export type Ad = {
   status: "active" | "paused" | "ended";
   funnelStage: "topo" | "meio" | "fundo";
   salesPageUrl: string;
+  snapshotUrl?: string;
   spend: number;
   impressions: number;
   clicks: number;
@@ -20,6 +21,7 @@ export type Ad = {
   activeAdsCount: number;
   daysRunning: number;
   thumbnailUrl: string;
+  adCreativeBody?: string;
 };
 
 export const mockAds: Ad[] = [
