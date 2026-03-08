@@ -1,9 +1,7 @@
-import { ExternalLink, Play, Image, Layers, Eye, DollarSign, MousePointerClick, BarChart3, Target, Calendar } from "lucide-react";
+import { ExternalLink, Play, Image, Layers, Eye } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Ad, statusLabels } from "@/lib/mock-data";
-import { useState, useMemo } from "react";
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from "recharts";
+import { useNavigate } from "react-router-dom";
 
 const statusColor: Record<string, string> = {
   active: "bg-success/15 text-success border-success/20",
