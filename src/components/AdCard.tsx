@@ -2,7 +2,8 @@ import { ExternalLink, Play, Image, Layers, Eye, DollarSign, MousePointerClick, 
 import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Ad, statusLabels } from "@/lib/mock-data";
-import { useState } from "react";
+import { useState, useMemo } from "react";
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from "recharts";
 
 const statusColor: Record<string, string> = {
   active: "bg-success/15 text-success border-success/20",
@@ -24,11 +25,28 @@ interface AdCardProps {
 const formatCurrency = (value: number) =>
   value.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
 
+const generateChartData = (ad: Ad) => {
+  const days = Math.min(ad.daysRunning, 30);
+  const data = [];
+  for (let i = 0; i < days; i++) {
+    const progress = (i + 1) / days;
+    const noise = () => 0.7 + Math.random() * 0.6;
+    data.push({
+      day: `D${i + 1}`,
+      impressões: Math.round((ad.impressions / days) * noise()),
+      cliques: Math.round((ad.clicks / days) * noise()),
+      conversões: Math.round((ad.conversions / days) * noise()),
+    });
+  }
+  return data;
+};
+
 const formatNumber = (value: number) => value.toLocaleString("pt-BR");
 
 const AdCard = ({ ad, index }: AdCardProps) => {
   const TypeIcon = adTypeIcon[ad.adType] || Image;
   const [open, setOpen] = useState(false);
+  const chartData = useMemo(() => generateChartData(ad), [ad]);
 
   return (
     <>
@@ -153,6 +171,34 @@ const AdCard = ({ ad, index }: AdCardProps) => {
                 <MetricCard icon={Target} label="Conversões" value={formatNumber(ad.conversions)} />
                 <MetricCard icon={BarChart3} label="CTR" value={`${ad.ctr.toFixed(1)}%`} />
                 <MetricCard icon={DollarSign} label="CPC" value={formatCurrency(ad.cpc)} />
+              </div>
+
+              {/* Performance Chart */}
+              <div className="pt-2 border-t border-border space-y-2">
+                <p className="text-xs font-medium text-muted-foreground flex items-center gap-1.5">
+                  <BarChart3 className="w-3.5 h-3.5" /> Performance (últimos {chartData.length} dias)
+                </p>
+                <div className="h-48 w-full">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <LineChart data={chartData} margin={{ top: 5, right: 5, left: -20, bottom: 5 }}>
+                      <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
+                      <XAxis dataKey="day" tick={{ fontSize: 10, fill: "hsl(var(--muted-foreground))" }} interval="preserveStartEnd" />
+                      <YAxis tick={{ fontSize: 10, fill: "hsl(var(--muted-foreground))" }} />
+                      <Tooltip
+                        contentStyle={{
+                          backgroundColor: "hsl(var(--card))",
+                          border: "1px solid hsl(var(--border))",
+                          borderRadius: "8px",
+                          fontSize: "12px",
+                        }}
+                      />
+                      <Legend wrapperStyle={{ fontSize: "11px" }} />
+                      <Line type="monotone" dataKey="impressões" stroke="hsl(var(--primary))" strokeWidth={2} dot={false} />
+                      <Line type="monotone" dataKey="cliques" stroke="hsl(var(--chart-2))" strokeWidth={2} dot={false} />
+                      <Line type="monotone" dataKey="conversões" stroke="hsl(var(--success))" strokeWidth={2} dot={false} />
+                    </LineChart>
+                  </ResponsiveContainer>
+                </div>
               </div>
 
               {/* Dates & extra */}
