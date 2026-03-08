@@ -1,5 +1,5 @@
 import { useState, useMemo } from "react";
-import { Search, Settings, Calendar, SlidersHorizontal, ChevronLeft, ChevronRight, Facebook, RefreshCw, Loader2 } from "lucide-react";
+import { Search, Settings, Calendar, SlidersHorizontal, ChevronLeft, ChevronRight, Facebook, RefreshCw, Loader2, Eye, DollarSign } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
