@@ -41,6 +41,16 @@ const Dashboard = () => {
     });
   }, [search, statusFilter, funnelFilter, platformFilter, adTypeFilter, dateFrom, dateTo, minDays, maxDays, minAds, maxAds]);
 
+  const [currentPage, setCurrentPage] = useState(1);
+  const totalPages = Math.ceil(filteredAds.length / ITEMS_PER_PAGE);
+  const paginatedAds = useMemo(() => {
+    const start = (currentPage - 1) * ITEMS_PER_PAGE;
+    return filteredAds.slice(start, start + ITEMS_PER_PAGE);
+  }, [filteredAds, currentPage]);
+
+  // Reset page when filters change
+  useMemo(() => { setCurrentPage(1); }, [filteredAds.length]);
+
   const resetFilters = () => {
     setSearch("");
     setStatusFilter("all");
