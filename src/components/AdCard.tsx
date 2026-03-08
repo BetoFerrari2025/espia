@@ -25,6 +25,22 @@ interface AdCardProps {
 const formatCurrency = (value: number) =>
   value.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
 
+const generateChartData = (ad: Ad) => {
+  const days = Math.min(ad.daysRunning, 30);
+  const data = [];
+  for (let i = 0; i < days; i++) {
+    const progress = (i + 1) / days;
+    const noise = () => 0.7 + Math.random() * 0.6;
+    data.push({
+      day: `D${i + 1}`,
+      impressões: Math.round((ad.impressions / days) * noise()),
+      cliques: Math.round((ad.clicks / days) * noise()),
+      conversões: Math.round((ad.conversions / days) * noise()),
+    });
+  }
+  return data;
+};
+
 const formatNumber = (value: number) => value.toLocaleString("pt-BR");
 
 const AdCard = ({ ad, index }: AdCardProps) => {
