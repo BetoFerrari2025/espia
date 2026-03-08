@@ -1,13 +1,16 @@
 import { useState, useMemo } from "react";
-import { Search, Settings, Calendar, SlidersHorizontal, ChevronLeft, ChevronRight, Facebook } from "lucide-react";
+import { Search, Settings, Calendar, SlidersHorizontal, ChevronLeft, ChevronRight, Facebook, RefreshCw, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/AppSidebar";
-import { mockAds } from "@/lib/mock-data";
+import { mockAds, Ad } from "@/lib/mock-data";
 import { Slider } from "@/components/ui/slider";
 import AdCard from "@/components/AdCard";
+import { useFacebookAds, useTriggerFetch, FacebookAd } from "@/hooks/useFacebookAds";
+import { useToast } from "@/hooks/use-toast";
+import { useQueryClient } from "@tanstack/react-query";
 
 const ITEMS_PER_PAGE = 8;
 
