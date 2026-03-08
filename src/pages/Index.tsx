@@ -116,6 +116,24 @@ const Index = () => {
           ))}
         </div>
       </section>
+
+      {/* Footer */}
+      <footer className="border-t border-border py-8 mt-8">
+        <div className="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4">
+          <div className="flex items-center gap-2">
+            <div className="w-7 h-7 rounded-lg gradient-gold flex items-center justify-center">
+              <Zap className="w-4 h-4 text-primary-foreground" />
+            </div>
+            <span className="text-sm font-display font-bold text-gradient-gold">AdSpy</span>
+          </div>
+          <div className="flex items-center gap-6 text-sm text-muted-foreground">
+            <Link to="/termos" className="hover:text-foreground transition-colors">Termos de Uso</Link>
+            <Link to="/exclusao-dados" className="hover:text-foreground transition-colors">Exclusão de Dados</Link>
+            <Link to="/privacidade" className="hover:text-foreground transition-colors">Políticas de Privacidade</Link>
+          </div>
+          <p className="text-xs text-muted-foreground">© 2026 AdSpy. Todos os direitos reservados.</p>
+        </div>
+      </footer>
     </div>
   );
 };

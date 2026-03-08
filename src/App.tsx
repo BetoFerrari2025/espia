@@ -44,6 +44,9 @@ const App = () => (
                   <AdDetailPage />
                 </ProtectedRoute>
               } />
+              <Route path="/termos" element={<TermsPage />} />
+              <Route path="/exclusao-dados" element={<DataDeletionPage />} />
+              <Route path="/privacidade" element={<PrivacyPage />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </AuthProvider>
