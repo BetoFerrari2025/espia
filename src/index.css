@@ -123,7 +123,7 @@
 
 @layer utilities {
   .gradient-gold {
-    background: linear-gradient(135deg, hsl(51 100% 50%), hsl(48 100% 55%));
+    background: linear-gradient(135deg, hsl(54 100% 50%), hsl(50 100% 55%));
   }
   .gradient-dark {
     background: linear-gradient(180deg, hsl(222 25% 8%), hsl(222 25% 12%));
