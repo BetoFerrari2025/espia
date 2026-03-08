@@ -224,16 +224,53 @@ const Dashboard = () => {
                 </div>
               </div>
 
+              {/* Impressões */}
+              <div className="space-y-2">
+                <label className="text-xs font-medium text-muted-foreground flex items-center gap-1">
+                  <Eye className="w-3 h-3" /> Impressões
+                </label>
+                <div className="flex gap-2">
+                  <Input type="number" value={minImpressions} onChange={(e) => setMinImpressions(Number(e.target.value))} className="bg-secondary border-border text-xs h-8" placeholder="Mín" />
+                  <Input type="number" value={maxImpressions} onChange={(e) => setMaxImpressions(Number(e.target.value))} className="bg-secondary border-border text-xs h-8" placeholder="Máx" />
+                </div>
+                <Slider
+                  defaultValue={[0, 100]}
+                  max={100}
+                  step={1}
+                  onValueChange={(v) => { setMinImpressions(v[0] * 100000); setMaxImpressions(v[1] * 100000); }}
+                  className="[&_[role=slider]]:bg-primary [&_[role=slider]]:border-primary"
+                />
+                <div className="flex justify-between text-xs text-muted-foreground">
+                  <span>{(minImpressions / 1000).toFixed(0)}k</span>
+                  <span>{(maxImpressions / 1000).toFixed(0)}k</span>
+                </div>
+              </div>
+
+              {/* Gasto Estimado */}
+              <div className="space-y-2">
+                <label className="text-xs font-medium text-muted-foreground flex items-center gap-1">
+                  <DollarSign className="w-3 h-3" /> Gasto Estimado (R$)
+                </label>
+                <div className="flex gap-2">
+                  <Input type="number" value={minSpend} onChange={(e) => setMinSpend(Number(e.target.value))} className="bg-secondary border-border text-xs h-8" placeholder="Mín" />
+                  <Input type="number" value={maxSpend} onChange={(e) => setMaxSpend(Number(e.target.value))} className="bg-secondary border-border text-xs h-8" placeholder="Máx" />
+                </div>
+                <Slider
+                  defaultValue={[0, 100]}
+                  max={100}
+                  step={1}
+                  onValueChange={(v) => { setMinSpend(v[0] * 1000); setMaxSpend(v[1] * 1000); }}
+                  className="[&_[role=slider]]:bg-primary [&_[role=slider]]:border-primary"
+                />
+                <div className="flex justify-between text-xs text-muted-foreground">
+                  <span>R${(minSpend / 1000).toFixed(0)}k</span>
+                  <span>R${(maxSpend / 1000).toFixed(0)}k</span>
+                </div>
+              </div>
+
               {/* Date */}
               <div className="space-y-2">
                 <label className="text-xs font-medium text-muted-foreground flex items-center gap-1"><Calendar className="w-3 h-3" /> Data</label>
-                <Input type="date" value={dateFrom} onChange={(e) => setDateFrom(e.target.value)} className="bg-secondary border-border text-xs h-8" />
-                <Input type="date" value={dateTo} onChange={(e) => setDateTo(e.target.value)} className="bg-secondary border-border text-xs h-8" />
-              </div>
-
-              {/* Tipo de Anúncio */}
-              <div className="space-y-2">
-                <label className="text-xs font-medium text-muted-foreground">Tipo de Anúncio</label>
                 <Select value={adTypeFilter} onValueChange={setAdTypeFilter}>
                   <SelectTrigger className="bg-secondary border-border text-xs h-8">
                     <SelectValue placeholder="Todos" />
