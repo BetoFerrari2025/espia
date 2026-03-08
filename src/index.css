@@ -15,7 +15,7 @@
     --popover: 0 0% 100%;
     --popover-foreground: 220 20% 10%;
 
-    --primary: 51 100% 50%;
+    --primary: 54 100% 50%;
     --primary-foreground: 220 20% 10%;
 
     --secondary: 220 15% 93%;
@@ -24,7 +24,7 @@
     --muted: 220 15% 95%;
     --muted-foreground: 220 10% 45%;
 
-    --accent: 51 100% 50%;
+    --accent: 54 100% 50%;
     --accent-foreground: 220 20% 10%;
 
     --destructive: 0 84% 60%;
@@ -32,20 +32,20 @@
 
     --border: 220 15% 90%;
     --input: 220 15% 90%;
-    --ring: 51 100% 50%;
+    --ring: 54 100% 50%;
 
     --radius: 0.75rem;
 
     --sidebar-background: 220 20% 97%;
     --sidebar-foreground: 220 15% 30%;
-    --sidebar-primary: 51 100% 50%;
+    --sidebar-primary: 54 100% 50%;
     --sidebar-primary-foreground: 220 20% 10%;
-    --sidebar-accent: 51 100% 95%;
+    --sidebar-accent: 54 100% 95%;
     --sidebar-accent-foreground: 220 20% 10%;
     --sidebar-border: 220 15% 90%;
-    --sidebar-ring: 51 100% 50%;
+    --sidebar-ring: 54 100% 50%;
 
-    --chart-1: 51 100% 50%;
+    --chart-1: 54 100% 50%;
     --chart-2: 200 70% 50%;
     --chart-3: 150 60% 45%;
     --chart-4: 280 65% 55%;
@@ -66,7 +66,7 @@
     --popover: 222 25% 11%;
     --popover-foreground: 210 20% 95%;
 
-    --primary: 51 100% 50%;
+    --primary: 54 100% 50%;
     --primary-foreground: 220 20% 10%;
 
     --secondary: 222 20% 16%;
@@ -75,7 +75,7 @@
     --muted: 222 20% 16%;
     --muted-foreground: 215 15% 55%;
 
-    --accent: 51 100% 50%;
+    --accent: 54 100% 50%;
     --accent-foreground: 220 20% 10%;
 
     --destructive: 0 62% 30%;
@@ -83,18 +83,18 @@
 
     --border: 222 20% 18%;
     --input: 222 20% 18%;
-    --ring: 51 100% 50%;
+    --ring: 54 100% 50%;
 
     --sidebar-background: 222 25% 10%;
     --sidebar-foreground: 210 15% 70%;
-    --sidebar-primary: 51 100% 50%;
+    --sidebar-primary: 54 100% 50%;
     --sidebar-primary-foreground: 220 20% 10%;
-    --sidebar-accent: 51 100% 15%;
-    --sidebar-accent-foreground: 51 100% 70%;
+    --sidebar-accent: 54 100% 15%;
+    --sidebar-accent-foreground: 54 100% 70%;
     --sidebar-border: 222 20% 16%;
-    --sidebar-ring: 51 100% 50%;
+    --sidebar-ring: 54 100% 50%;
 
-    --chart-1: 51 100% 50%;
+    --chart-1: 54 100% 50%;
     --chart-2: 200 70% 50%;
     --chart-3: 150 60% 45%;
     --chart-4: 280 65% 55%;
@@ -123,17 +123,17 @@
 
 @layer utilities {
   .gradient-gold {
-    background: linear-gradient(135deg, hsl(51 100% 50%), hsl(48 100% 55%));
+    background: linear-gradient(135deg, hsl(54 100% 50%), hsl(50 100% 55%));
   }
   .gradient-dark {
     background: linear-gradient(180deg, hsl(222 25% 8%), hsl(222 25% 12%));
   }
   .text-gradient-gold {
-    background: linear-gradient(135deg, hsl(51 100% 50%), hsl(48 100% 58%));
+    background: linear-gradient(135deg, hsl(54 100% 50%), hsl(50 100% 58%));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
   .glow-gold {
-    box-shadow: 0 0 20px hsl(51 100% 50% / 0.3), 0 0 60px hsl(51 100% 50% / 0.1);
+    box-shadow: 0 0 20px hsl(54 100% 50% / 0.3), 0 0 60px hsl(54 100% 50% / 0.1);
   }
 }
