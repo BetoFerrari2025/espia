@@ -84,8 +84,8 @@ export default {
           to: { opacity: "1", transform: "translateY(0)" },
         },
         "pulse-gold": {
-          "0%, 100%": { boxShadow: "0 0 0 0 hsl(45 100% 51% / 0.4)" },
-          "50%": { boxShadow: "0 0 0 12px hsl(45 100% 51% / 0)" },
+          "0%, 100%": { boxShadow: "0 0 0 0 hsl(51 100% 50% / 0.4)" },
+          "50%": { boxShadow: "0 0 0 12px hsl(51 100% 50% / 0)" },
         },
       },
       animation: {
