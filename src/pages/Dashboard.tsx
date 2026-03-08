@@ -32,6 +32,10 @@ const Dashboard = () => {
   const [minAds, setMinAds] = useState(0);
   const [maxAds, setMaxAds] = useState(200);
   const [dataSource, setDataSource] = useState<"all" | "facebook" | "mock">("all");
+  const [minImpressions, setMinImpressions] = useState(0);
+  const [maxImpressions, setMaxImpressions] = useState(10000000);
+  const [minSpend, setMinSpend] = useState(0);
+  const [maxSpend, setMaxSpend] = useState(100000);
 
   // Convert Facebook ads to Ad format for the existing AdCard
   const convertedFbAds: Ad[] = useMemo(() => {
